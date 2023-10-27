@@ -169,10 +169,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="include\Attack_turn.h" />
     <ClInclude Include="include\Map.h" />
     <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Pause.h" />
     <ClInclude Include="include\SettingsMenu.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="include\attacks.txt" />
+    <Text Include="include\characters.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -32,5 +32,12 @@
     <ClInclude Include="include\SettingsMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\Attack_turn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="include\attacks.txt" />
+    <Text Include="include\characters.txt" />
   </ItemGroup>
 </Project>

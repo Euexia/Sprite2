@@ -1,0 +1,76 @@
+"Pistolet-eau","Water",45,95,12
+"TouchGrass","Grass",30,80,18
+"Feu-de-bois","Fire",50,92,14
+"Plop","Water",35,88,16
+"GREEEEEEEEEEEN","Grass",999,999,999
+"Souffle-feu","Fire",45,90,12
+"LeafySplash," "Grass," 40, 90, 15
+"AquaBlast," "Water," 55, 85, 12
+"InfernoDance," "Fire," 60, 80, 10
+"MudPie," "Water," 35, 95, 18
+"ToastyRoots," "Grass," 50, 88, 14
+"SteamyShenanigans," "Water," 45, 92, 16
+"FlameFandango," "Fire," 48, 87, 13
+"GrassyGiggle," "Grass," 42, 93, 17
+"Splasharoo," "Water," 38, 91, 19
+"Firecracker," "Fire," 58, 84, 11
+"LawnmowerLunge," "Grass," 47, 89, 15
+"GeyserGiggle," "Water," 52, 86, 13
+"FieryFrisbee," "Fire," 55, 83, 12
+"DandelionDrench," "Grass," 44, 90, 16
+"HydroHiccups," "Water," 40, 91, 14
+"EmberEruption," "Fire," 62, 82, 11
+"TumbleweedTornado," "Grass," 49, 88, 17
+"SplashySpectacle," "Water," 57, 85, 10
+"LeafyLullaby," "Grass," 46, 92, 18
+"BlazingBanjo," "Fire," 60, 81, 9
+"Pistolet-eau","Water",45,95,12
+"Flamestrike","Fire",50,90,10
+"Leafstorm","Grass",55,85,15
+"Thunderbolt","Electric",48,92,11
+"Ice Shard","Ice",42,98,13
+"Fist Punch","Fighting",60,80,8
+"Toxic Mist","Poison",38,96,14
+"Earthquake","Ground",65,75,9
+"Aerial Slash","Flying",52,88,12
+"Psycho Blast","Psychic",58,82,11
+"Bug Bite","Bug",47,93,14
+"Rockslide","Rock",53,87,12
+"Spectral Strike","Ghost",44,94,11
+"Steel Strike","Steel",49,91,10
+"Shadow Claw","Dark",54,86,13
+"Fairy Dance","Fairy",46,89,13
+"Dragon Breath","Dragon",51,84,14
+"Hydro Pump","Water",60,85,9
+"Inferno","Fire",65,80,8
+"Vine Whip","Grass",45,95,12
+"Electric Shock","Electric",55,85,13
+"Icy Blast","Ice",42,98,11
+"Karate Chop","Fighting",58,82,10
+"Venom Strike","Poison",40,90,14
+"Tremor Strike","Ground",68,72,9
+"Sky Dive","Flying",50,88,12
+"Bug Swarm","Bug",48,92,13
+"Stone Edge","Rock",53,87,11
+"Spirit Strike","Ghost",43,93,12
+"Iron Head","Steel",52,91,10
+"Dark Pulse","Dark",56,86,13
+"Moonlight Beam","Fairy",47,89,12
+"Dragon Rage","Dragon",59,84,11
+"Surf","Water",55,90,10
+"Fire Blast","Fire",70,80,8
+"Solar Beam","Grass",60,85,11
+"Thunderstorm","Electric",62,82,9
+"Blizzard","Ice",50,95,12
+"Karate Kick","Fighting",65,78,10
+"Toxic Cloud","Poison",42,92,13
+"Quicksand","Ground",70,72,8
+"Hurricane","Flying",58,88,11
+"Mind Crush","Psychic",68,75,9
+"Bug Swarm","Bug",46,94,12
+"Stone Throw","Rock",54,91,10
+"Haunting Wail","Ghost",44,93,13
+"Steel Claw","Steel",57,87,10
+"Dark Void","Dark",48,89,12
+"Moonblast","Fairy",53,84,11
+"Dragon Roar","Dragon",64,86,9

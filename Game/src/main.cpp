@@ -9,6 +9,7 @@
 #include "SettingsMenu.h"
 #include "Map.h"
 #include "Pause.h"
+#include "Attack_turn.h"
 
 
 class Player {
