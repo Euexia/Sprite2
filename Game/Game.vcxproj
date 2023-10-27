@@ -159,9 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\main.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)include;$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="src\Map.cpp" />
+    <ClCompile Include="src\Menu.cpp" />
+    <ClCompile Include="src\Pause.cpp" />
+    <ClCompile Include="src\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GameObjectLib\GameObjectLib.vcxproj">
@@ -170,14 +175,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\Attack_turn.h" />
+    <ClInclude Include="include\Game.h" />
     <ClInclude Include="include\Map.h" />
     <ClInclude Include="include\Menu.h" />
     <ClInclude Include="include\Pause.h" />
+    <ClInclude Include="include\Player.h" />
     <ClInclude Include="include\SettingsMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="include\attacks.txt" />
     <Text Include="include\characters.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="assets\fonts\monogram.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\player\img-player.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

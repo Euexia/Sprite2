@@ -32,13 +32,8 @@ public:
     }
 
     // Mettre à jour la couleur de fond selon la position de la caméra
-    void updateBackground(const sf::Vector2i& cameraPosition) {
-        background.setFillColor(colors[cameraPosition.x][cameraPosition.y]);
-    }
+    void updateBackground(const sf::Vector2i& cameraPosition);
 
-    void draw(sf::RenderWindow& window) {
-        window.draw(background);
-    }
+    void draw(sf::RenderWindow& window);
 
-    // Ajoutez d'autres méthodes si nécessaire
 };
