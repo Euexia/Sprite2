@@ -27,6 +27,15 @@ public:
         playerSprite.setPosition(sf::Vector2f(100, 100)); // position de départ
     }
 
+    // Fonction pour vérifier si le joueur a atteint un bord
+    sf::Vector2i checkBounds() {
+        if (playerSprite.getPosition().x < 0) return { -1, 0 };
+        if (playerSprite.getPosition().x + playerSprite.getGlobalBounds().width > WINDOW_WIDTH - 10) return { 1, 0 };
+        if (playerSprite.getPosition().y < 0) return { 0, -1 };
+        if (playerSprite.getPosition().y + playerSprite.getGlobalBounds().height > WINDOW_HEIGHT - 10) return { 0, 1 };
+        return { 0, 0 };  // Si aucun bord n'est atteint
+    }
+
     void handleInput() {
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
             playerSprite.move(-speed, 0);
@@ -43,7 +52,6 @@ public:
     }
 
     void update() {
-
         // Gestion des collisions avec les bords de la fenêtre
         // Haut
         if (playerSprite.getPosition().y < 0) {
@@ -63,6 +71,17 @@ public:
         }
     }
 
+
+    void setPosition(float x, float y) {
+        playerSprite.setPosition(x, y);
+    }
+    sf::Vector2f getPosition() const {
+        return playerSprite.getPosition();
+    }
+    sf::FloatRect getBounds() const {
+        return playerSprite.getGlobalBounds();
+    }
+
     void draw(sf::RenderWindow& window) {
         window.draw(playerSprite);
     }
@@ -75,6 +94,7 @@ private:
     sf::RenderWindow window;
     Player player;
     Map map;
+    sf::Vector2i cameraPosition = { 1, 1 };  // Position initiale de la caméra au centre
     Menu mainMenu;  // Instanciez votre menu ici
     SettingsMenu settingsMenu; // Instanciez votre menu SettingsMenu
     bool isPaused;
@@ -82,6 +102,7 @@ private:
 
 public:
     Game() : window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Pouvoir Du Sucre") {}
+
 
     void run() {
         int menuChoice = mainMenu.run(window);
@@ -105,6 +126,27 @@ public:
             break;
         }
     }
+
+    void moveCamera(const sf::Vector2i& movement) {
+        cameraPosition += movement;
+
+        // Empêchez la caméra de sortir des limites de la matrice 3x3
+        cameraPosition.x = std::max(0, std::min(2, cameraPosition.x));
+        cameraPosition.y = std::max(0, std::min(2, cameraPosition.y));
+
+        float offset = 50.0f; // un petit décalage pour éviter un retour immédiat
+
+        // Replacez le joueur de l'autre côté de l'écran
+        if (movement.x == 1) player.setPosition(offset, player.getPosition().y);
+        else if (movement.x == -1) player.setPosition(WINDOW_WIDTH - player.getBounds().width - offset, player.getPosition().y);
+        if (movement.y == 1) player.setPosition(player.getPosition().x, offset);
+        else if (movement.y == -1) player.setPosition(player.getPosition().x, WINDOW_HEIGHT - player.getBounds().height - offset);
+
+        map.updateBackground(cameraPosition);
+    }
+
+
+
 
     void gameLoop() {
         while (window.isOpen()) {
@@ -145,6 +187,14 @@ public:
         }
 
         player.handleInput();
+
+        // Vérifier si le joueur atteint un bord
+        sf::Vector2i movement = player.checkBounds();
+        if (movement.x != 0 || movement.y != 0) {
+            moveCamera(movement);
+        }
+
+        player.handleInput();
     }
 
     void update() {
@@ -164,7 +214,5 @@ int main() {
     Game game;
     game.run();
 
-
-    
     return 0;
 }

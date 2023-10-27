@@ -1,66 +1,44 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <nlohmann/json.hpp>
-#include <fstream>
+#include "Menu.h"
 
 
 
 class Map {
 private:
-    sf::Texture tileset;
-    const int TILE_SIZE = 32; // suppose que chaque tuile a une taille de 32x32
-    int tiles[20][15]{}; // tableau 2D représentant la carte, ajustez la taille selon vos besoins
+    sf::RectangleShape background; // Rectangle utilisé pour dessiner le fond coloré
+    sf::Color colors[3][3]; // Matrice 3x3 des couleurs
+
 
 public:
-    Map(){};
-    Map(const std::string& jsonFilePath) {
-        // Chargement du tileset
-        if (!tileset.loadFromFile("assets/tiles/Grass.png")) {
-            std::cerr << "Erreur lors du chargement du tileset!" << std::endl;
-        }
+    Map() {
+        background.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT)); // Ajustez ces valeurs selon la taille de votre fenêtre
 
-        // Chargez le fichier JSON
-        std::ifstream jsonFile("assets/tiles/map.json");
-        if (!jsonFile.is_open()) {
-            std::cerr << "Erreur lors de l'ouverture du fichier JSON" << std::endl;
-            return;
-        }
+        // Initialisation des couleurs pour chaque cellule de la matrice
+        // Vous pouvez ajuster ces couleurs selon vos préférences
+        colors[0][0] = sf::Color::Red;
+        colors[0][1] = sf::Color::Green;
+        colors[0][2] = sf::Color::Blue;
+        colors[1][0] = sf::Color::Yellow;
+        colors[1][1] = sf::Color::Magenta;
+        colors[1][2] = sf::Color::Cyan;
+        colors[2][0] = sf::Color::White;
+        colors[2][1] = sf::Color::Black;
+        colors[2][2] = sf::Color(128, 128, 128); // Gris
 
-        nlohmann::json root;
-        jsonFile >> root;
+        // Initialisation de la couleur par défaut
+        background.setFillColor(colors[1][1]); // Centre de la matrice
+    }
 
-        // Vérifiez que le fichier JSON a le bon format et extrayez les données pour initialiser votre carte.
-        for (int i = 0; i < 20; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                // Exemple : supposons que le fichier JSON contienne un tableau "mapData" d'entiers.
-                int tileValue = root["mapData"][i][j].get<int>();
-                tiles[i][j] = tileValue;
-
-            }
-        }
-    
-
-        // Initialisation de la matrice de la carte
-        // (Ici, je remplis la carte avec des 0, mais vous pouvez la remplir avec les indices de vos tuiles)
-        for (int i = 0; i < 20; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                tiles[i][j] = 0;
-            }
-        }
+    // Mettre à jour la couleur de fond selon la position de la caméra
+    void updateBackground(const sf::Vector2i& cameraPosition) {
+        background.setFillColor(colors[cameraPosition.x][cameraPosition.y]);
     }
 
     void draw(sf::RenderWindow& window) {
-        for (int i = 0; i < 20; ++i) {
-            for (int j = 0; j < 15; ++j) {
-                sf::Sprite tileSprite(tileset);
-                tileSprite.setTextureRect(sf::IntRect(tiles[i][j] * TILE_SIZE, 0, TILE_SIZE, TILE_SIZE));
-                tileSprite.setPosition(i * TILE_SIZE, j * TILE_SIZE);
-                window.draw(tileSprite);
-            }
-        }
+        window.draw(background);
     }
 
-    // Ajoutez d'autres méthodes comme la gestion des collisions si nécessaire
+    // Ajoutez d'autres méthodes si nécessaire
 };
-
