@@ -30,9 +30,9 @@ public:
     // Fonction pour vérifier si le joueur a atteint un bord
     sf::Vector2i checkBounds() {
         if (playerSprite.getPosition().x < 0) return { -1, 0 };
-        if (playerSprite.getPosition().x + playerSprite.getGlobalBounds().width > WINDOW_WIDTH) return { 1, 0 };
+        if (playerSprite.getPosition().x + playerSprite.getGlobalBounds().width > WINDOW_WIDTH-10) return { 1, 0 };
         if (playerSprite.getPosition().y < 0) return { 0, -1 };
-        if (playerSprite.getPosition().y + playerSprite.getGlobalBounds().height > WINDOW_HEIGHT) return { 0, 1 };
+        if (playerSprite.getPosition().y + playerSprite.getGlobalBounds().height > WINDOW_HEIGHT-10) return { 0, 1 };
         return { 0, 0 };  // Si aucun bord n'est atteint
     }
 
@@ -134,14 +134,17 @@ public:
         cameraPosition.x = std::max(0, std::min(2, cameraPosition.x));
         cameraPosition.y = std::max(0, std::min(2, cameraPosition.y));
 
+        float offset = 50.0f; // un petit décalage pour éviter un retour immédiat
+
         // Replacez le joueur de l'autre côté de l'écran
-        if (movement.x == 1) player.setPosition(0, player.getPosition().y);
-        else if (movement.x == -1) player.setPosition(WINDOW_WIDTH - player.getBounds().width, player.getPosition().y);
-        if (movement.y == 1) player.setPosition(player.getPosition().x, 0);
-        else if (movement.y == -1) player.setPosition(player.getPosition().x, WINDOW_HEIGHT - player.getBounds().height);
-    
+        if (movement.x == 1) player.setPosition(offset, player.getPosition().y);
+        else if (movement.x == -1) player.setPosition(WINDOW_WIDTH - player.getBounds().width - offset, player.getPosition().y);
+        if (movement.y == 1) player.setPosition(player.getPosition().x, offset);
+        else if (movement.y == -1) player.setPosition(player.getPosition().x, WINDOW_HEIGHT - player.getBounds().height - offset);
+
         map.updateBackground(cameraPosition);
     }
+
 
 
 
@@ -182,6 +185,9 @@ public:
                 }
             }
         }
+
+        player.handleInput();
+
         // Vérifier si le joueur atteint un bord
         sf::Vector2i movement = player.checkBounds();
         if (movement.x != 0 || movement.y != 0) {
@@ -208,7 +214,5 @@ int main() {
     Game game;
     game.run();
 
-
-    
     return 0;
 }
